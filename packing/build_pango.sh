@@ -43,6 +43,7 @@ meson setup --prefix=/usr --buildtype=release -Dfontconfig=enabled -Dfreetype=en
 meson compile -C harfbuzz_builddir
 meson install -C harfbuzz_builddir
 
+
 echo "Buildling and Installing Pango"
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
 meson compile -C pango_builddir
