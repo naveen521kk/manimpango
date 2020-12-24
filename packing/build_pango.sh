@@ -10,7 +10,7 @@ echo "Downloading Pango"
 
 python -m pip install requests
 
-python download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
+python packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
