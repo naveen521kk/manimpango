@@ -9,7 +9,7 @@ cd pango
 echo "Downloading Pango"
 
 python -m pip install requests
-python -c "import requests;a=requests.get('http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz');b=open('pango-${PANGO_VERSION}.tar.xz','wb');b.write(a.content);print('done'"
+python -c "import requests;a=requests.get('http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz');b=open('pango-${PANGO_VERSION}.tar.xz','wb');b.write(a.content);print('done')"
 python -m pip uninstall -y requests
 tar -xf pango-${PANGO_VERSION}.tar.xz
 
