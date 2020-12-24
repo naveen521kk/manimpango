@@ -8,8 +8,9 @@ mkdir pango
 cd pango
 echo "Downloading Pango"
 
-yum install -y wget
-wget -O "pango-${PANGO_VERSION}.tar.xz" "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz"
+python -m pip install requests
+python -c "import requests;a=requests.get('http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz');b=open('pango-${PANGO_VERSION}.tar.xz','wb');b.write(a.content)"
+python -m pip install -y requests
 tar -xf pango-${PANGO_VERSION}.tar.xz
 
 mv pango-${PANGO_VERSION} pango
