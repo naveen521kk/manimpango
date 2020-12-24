@@ -3,6 +3,12 @@
 set -e
 PANGO_VERSION=1.48.0
 
+FILE_PATH="`dirname \"$0\"`"
+FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
+if [ -z "$FILE_PATH" ] ; then
+  exit 1
+fi
+
 cd $TMP
 mkdir pango
 cd pango
@@ -10,7 +16,7 @@ echo "Downloading Pango"
 
 python -m pip install requests
 
-python packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
+python $MY_PATH/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
