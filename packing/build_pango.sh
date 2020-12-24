@@ -22,7 +22,7 @@ python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sou
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
-pip3 install -U meson==0.55.3 ninja
+pip3 install -U meson ninja
 
 echo "Building and Install Glib"
 meson setup --prefix=/usr --buildtype=release glib_builddir glib
