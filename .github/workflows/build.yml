@@ -44,13 +44,6 @@ jobs:
           python -m pip install cibuildwheel==1.6.4
           echo "$event_name"
 
-      - name: Install External Dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          pip install setuptools wheel twine Cython setuptools
-          sudo apt install libcairo2-dev pkg-config python3-dev
-          sudo apt-get install libpango1.0-dev
-
       - name: Install External Dependencies (MacOS)
         if: runner.os == 'macOS'
         run: |
