@@ -7,6 +7,7 @@ cd $TMP
 mkdir pango
 cd pango
 echo "Downloading Pango"
+yum install wget
 wget -O "pango-${PANGO_VERSION}.tar.xz" "https://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz"
 tar -xf pango-${PANGO_VERSION}.tar.xz
 
