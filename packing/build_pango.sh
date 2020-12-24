@@ -25,6 +25,9 @@ pip3 install -U meson==0.55.3 ninja
 echo "Buildling and Installing Pango"
 # yum-builddep -y pango-devel
 
+cd pango
+meson wrap promote subprojects/glib/subprojects/libffi.wrap
+cd ..
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
 meson compile -C pango_builddir
 meson install -C pango_builddir
