@@ -15,7 +15,8 @@ cd ../..
 
 PATH=$PATH:~/.local/bin
 
-chmod 777 /root/.local/bin -R
+/root/.local/bin/jhbuild sanitycheck
+/root/.local/bin/jhbuild build pango
 sudo -u $(whoami) "~/.local/bin/jhbuild sanitycheck"
 sudo -u $(whoami) "~/.local/bin/jhbuild build pango"
 
