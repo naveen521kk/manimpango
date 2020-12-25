@@ -32,7 +32,7 @@ python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/rel
 python $FILE_PATH/packing/download_and_extract.py "https://www.freedesktop.org/software/fontconfig/release/fontconfig-${FONTCONFIG_VERSION}.tar.xz" fontconfig
 python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz" freetype
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.xz" expat
-python $FILE_PATH/packing/download_and_extract.py "ftp://ftp.gnu.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
+python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
