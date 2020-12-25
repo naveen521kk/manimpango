@@ -20,7 +20,7 @@ echo "Downloading Pango"
 python -m pip install requests
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/glib/${GLIB_VERSION%.*}/glib-${GLIB_VERSION}.tar.xz" glib
-python $FILE_PATH/packing/download_and_extract.py "https://github.com/fribidi/fribidi/releases/download/v${FRIBIDI_VERSION}/fribidi-${FRIBIDI_VERSION}.tar.xz" harfbuzz
+python $FILE_PATH/packing/download_and_extract.py "https://github.com/fribidi/fribidi/releases/download/v${FRIBIDI_VERSION}/fribidi-${FRIBIDI_VERSION}.tar.xz" fribidi
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
@@ -36,7 +36,7 @@ meson install -C glib_builddir
 # meson compile -C cairo_builddir
 # meson install -C cairo_builddir
 
-echo "Building and Install Harfbuzz"
+echo "Building and Install Fribidi"
 meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
 meson compile -C fribidi_builddir
 meson install -C fribidi_builddir
