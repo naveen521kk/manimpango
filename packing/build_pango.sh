@@ -82,11 +82,9 @@ make install
 cd ..
 
 echo "Building and Installing Cairo"
-cd cairo
-./configure --enable-fontconfig=yes --enable-freetype=yes
-make
-make install
-cd ..
+meson setup --prefix=/usr --buildtype=release -Dfontconfig=enabled -Dfreetype=enabled -Dglib=enabled -Dzlib=enabled -Dtee=enabled cairo_builddir cairo
+meson compile -C cairo_builddir
+meson install -C cairo_builddir
 
 echo "Buildling and Installing Pango"
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
