@@ -39,42 +39,40 @@ echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
 echo "Building and Install Glib"
-meson setup --prefix=/usr --buildtype=release glib_builddir glib
+meson setup --prefix=/usr --buildtype=release glib_builddir glib > /dev/null 2>&1
 meson compile -C glib_builddir > /dev/null 2>&1
 meson install -C glib_builddir > /dev/null 2>&1
 
 echo "Building and Install Fribidi"
-meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
+meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi > /dev/null 2>&1
 meson compile -C fribidi_builddir > /dev/null 2>&1
 meson install -C fribidi_builddir > /dev/null 2>&1
 
 echo "Building and Installing Gperf"
 cd gperf
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Expat"
 cd expat
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Freetype"
 cd freetype
-./configure --without-harfbuzz
-make
-make install
+./configure --without-harfbuzz > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Install Fontconfig"
-cd fontconfig
-./configure --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
-make
-make install
-cd ..
+meson setup --prefix=/usr --buildtype=release -Ddoc=false fontconfig_builddir fontconfig
+meson compile -C fontconfig_builddir
+meson install -C fontconfig_builddir
 
 echo "Building and Installing Pixman"
 cd pixman
