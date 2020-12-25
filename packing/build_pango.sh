@@ -23,6 +23,7 @@ fi
 cd $TMP
 if [ -d "$PWD/pango" ] ; then
   echo "Skipping Build"
+  exit 0
 fi
 
 mkdir pango
