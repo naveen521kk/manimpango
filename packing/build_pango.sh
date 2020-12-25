@@ -16,7 +16,7 @@ cd ../..
 PATH=$PATH:~/.local/bin
 
 chmod 777 /root/.local/bin -R
-jhbuild sanitycheck
+sudo -u username jhbuild sanitycheck
 jhbuild build pango
 
 cd /project
