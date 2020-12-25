@@ -4,7 +4,7 @@ set -e
 
 PANGO_VERSION=1.42.4
 GLIB_VERSION=2.67.1
-FRIBIDI_VERSION=2.7.3
+FRIBIDI_VERSION=1.0.10
 
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
