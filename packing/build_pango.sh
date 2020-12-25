@@ -16,7 +16,8 @@ cd ../..
 PATH=$PATH:~/.local/bin
 
 chmod 777 /root/.local/bin -R
-sudo -u username ~/.local/bin/jhbuild sanitycheck
-sudo -u username ~/.local/bin/jhbuild build pango
+sudo -u $(whoami) "~/.local/bin/jhbuild sanitycheck"
+sudo -u $(whoami) "~/.local/bin/jhbuild build pango"
 
 cd /project
+exit 2
