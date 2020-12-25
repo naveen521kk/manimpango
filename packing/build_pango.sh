@@ -47,70 +47,70 @@ echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
 echo "Building and Install Glib"
-meson setup --prefix=/usr --buildtype=release glib_builddir glib
-meson compile -C glib_builddir
-meson install -C glib_builddir
+meson setup --prefix=/usr --buildtype=release glib_builddir glib > /dev/null 2>&1
+meson compile -C glib_builddir > /dev/null 2>&1
+meson install -C glib_builddir > /dev/null 2>&1
 
 echo "Building and Install Fribidi"
-meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
-meson compile -C fribidi_builddir
-meson install -C fribidi_builddir
+meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi > /dev/null 2>&1
+meson compile -C fribidi_builddir > /dev/null 2>&1
+meson install -C fribidi_builddir > /dev/null 2>&1
 
 echo "Building and Installing Gperf"
 cd gperf
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Expat"
 cd expat
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Freetype"
 cd freetype
-./configure --without-harfbuzz
-make
-make install
+./configure --without-harfbuzz > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Install Fontconfig"
-meson setup --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig
-meson compile -C fontconfig_builddir
-meson install -C fontconfig_builddir
+meson setup --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig > /dev/null 2>&1
+meson compile -C fontconfig_builddir > /dev/null 2>&1
+meson install -C fontconfig_builddir > /dev/null 2>&1
 
 echo "Building and Install Libpng"
 cd libpng
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 echo "Building and Installing Pixman"
 cd pixman
-./configure
-make
-make install
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Cairo"
 cd cairo
-./configure --enable-fontconfig --enable-freetype
-make
-make install
+./configure --enable-fontconfig --enable-freetype > /dev/null 2>&1
+make > /dev/null 2>&1
+make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Installing Harfbuzz"
-meson setup --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz
-meson compile -C harfbuzz_builddir
-meson install -C harfbuzz_builddir
+meson setup --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz > /dev/null 2>&1
+meson compile -C harfbuzz_builddir > /dev/null 2>&1
+meson install -C harfbuzz_builddir > /dev/null 2>&1
 
 
 echo "Buildling and Installing Pango"
-meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
-meson compile -C pango_builddir
-meson install -C pango_builddir
+meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango > /dev/null 2>&1
+meson compile -C pango_builddir > /dev/null 2>&1
+meson install -C pango_builddir > /dev/null 2>&1
 
 cd $FILE_PATH
