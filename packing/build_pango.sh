@@ -3,7 +3,7 @@
 set -e
 
 PANGO_VERSION=1.42.4
-GLIB_VERSION=2.26.0
+GLIB_VERSION=2.67.1
 HARFBUZZ_VERSION=2.7.3
 
 FILE_PATH="`dirname \"$0\"`"
@@ -20,7 +20,6 @@ echo "Downloading Pango"
 python -m pip install requests
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/glib/${GLIB_VERSION%.*}/glib-${GLIB_VERSION}.tar.xz" glib
-# python $FILE_PATH/packing/download_and_extract.py "https://gitlab.freedesktop.org/cairo/cairo/-/archive/${CAIRO_VERSION}/cairo-${CAIRO_VERSION}.tar.gz" cairo
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
 python -m pip uninstall -y requests
 
