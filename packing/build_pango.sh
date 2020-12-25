@@ -12,6 +12,7 @@ FONTCONFIG_VERSION=2.13.93
 EXPANT_VERSION=2.2.10 # TODO: change url to use this version
 GPERF_VERSION=3.1
 LIBPNG_VERSION=1.6.37
+HARFBUZZ_VERSION=2.7.3
 
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
@@ -35,6 +36,7 @@ python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.xz" expat
 python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
 python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge.net/project/libpng/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz" libpng
+python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
@@ -96,7 +98,15 @@ make
 make install
 cd ..
 
+echo "Building and Installing Harfbuzz"
+meson setup --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz
+meson compile -C harfbuzz_builddir
+meson install -C harfbuzz_builddir
+
+
 echo "Buildling and Installing Pango"
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
 meson compile -C pango_builddir
 meson install -C pango_builddir
+
+cd $FILE_PATH
