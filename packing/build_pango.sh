@@ -77,10 +77,11 @@ meson compile -C fontconfig_builddir
 meson install -C fontconfig_builddir
 
 echo "Building and Install Libpng"
+cd libpng
 ./configure
 make
 make install
-
+cd ..
 echo "Building and Installing Pixman"
 cd pixman
 ./configure
