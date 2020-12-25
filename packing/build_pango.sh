@@ -10,6 +10,7 @@ PIXMAN_VERSION=0.40.0
 FREETYPE_VERSION=2.9.1
 FONTCONFIG_VERSION=2.13.93
 EXPANT_VERSION=2.2.10 # TODO: change url to use this version
+GPERF_VERSION=3.1
 
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
@@ -31,6 +32,7 @@ python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/rel
 python $FILE_PATH/packing/download_and_extract.py "https://www.freedesktop.org/software/fontconfig/release/fontconfig-${FONTCONFIG_VERSION}.tar.xz" fontconfig
 python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz" freetype
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.xz" expat
+python $FILE_PATH/packing/download_and_extract.py "ftp://ftp.gnu.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
@@ -45,6 +47,13 @@ echo "Building and Install Fribidi"
 meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
 meson compile -C fribidi_builddir > /dev/null 2>&1
 meson install -C fribidi_builddir > /dev/null 2>&1
+
+echo "Building and Installing Gperf"
+cd gperf
+./configure
+make
+make install
+cd ..
 
 echo "Building and Installing Expat"
 cd expat
