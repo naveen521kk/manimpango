@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04,macos-11,windows-latest]
+        os: [ubuntu-18.04]
     env:
       CIBW_BUILD: "cp37-* cp36-* cp38-* cp39-* pp*"
       CIBW_SKIP: "cp35"
