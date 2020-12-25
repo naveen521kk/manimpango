@@ -70,7 +70,7 @@ make install > /dev/null 2>&1
 cd ..
 
 echo "Building and Install Fontconfig"
-meson setup --prefix=/usr --buildtype=release -Ddoc=disabled fontconfig_builddir fontconfig
+meson setup --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig
 meson compile -C fontconfig_builddir
 meson install -C fontconfig_builddir
 
