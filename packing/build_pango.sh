@@ -82,7 +82,7 @@ make install
 cd ..
 
 echo "Building and Installing Cairo"
-meson setup --prefix=/usr --buildtype=release -Dfontconfig=enabled -Dfreetype=enabled -Dglib=enabled -Dzlib=enabled -Dtee=enabled cairo_builddir cairo
+meson setup --prefix=/usr --buildtype=release -Dfontconfig=enabled -Dfreetype=enabled -Dglib=enabled -Dzlib=enabled -Dtee=enabled -Dtests=disabled cairo_builddir cairo
 meson compile -C cairo_builddir
 meson install -C cairo_builddir
 
