@@ -21,6 +21,11 @@ if [ -z "$FILE_PATH" ] ; then
 fi
 
 cd $TMP
+if [ -d "/path/to/dir" ]
+then
+  exit 0
+fi
+
 mkdir pango
 cd pango
 echo "Downloading Pango"
