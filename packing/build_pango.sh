@@ -5,7 +5,7 @@ set -e
 PANGO_VERSION=1.48.0
 GLIB_VERSION=2.67.1
 FRIBIDI_VERSION=1.0.10
-CAIRO_VERSION=1.17.4
+CAIRO_VERSION=1.15.14
 PIXMAN_VERSION=0.40.0
 FREETYPE_VERSION=2.9.1
 FONTCONFIG_VERSION=2.13.93
@@ -28,7 +28,7 @@ python -m pip install requests
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/glib/${GLIB_VERSION%.*}/glib-${GLIB_VERSION}.tar.xz" glib
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/fribidi/fribidi/releases/download/v${FRIBIDI_VERSION}/fribidi-${FRIBIDI_VERSION}.tar.xz" fribidi
-python $FILE_PATH/packing/download_and_extract.py "https://gitlab.freedesktop.org/cairo/cairo/-/archive/${CAIRO_VERSION}/cairo-${CAIRO_VERSION}.tar.gz" cairo
+python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/snapshots/cairo-${CAIRO_VERSION}.tar.xz" cairo
 python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/releases/pixman-${PIXMAN_VERSION}.tar.gz" pixman
 python $FILE_PATH/packing/download_and_extract.py "https://www.freedesktop.org/software/fontconfig/release/fontconfig-${FONTCONFIG_VERSION}.tar.xz" fontconfig
 python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz" freetype
@@ -41,34 +41,34 @@ echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
 echo "Building and Install Glib"
-meson setup --prefix=/usr --buildtype=release glib_builddir glib > /dev/null 2>&1
-meson compile -C glib_builddir > /dev/null 2>&1
-meson install -C glib_builddir > /dev/null 2>&1
+meson setup --prefix=/usr --buildtype=release glib_builddir glib
+meson compile -C glib_builddir
+meson install -C glib_builddir
 
 echo "Building and Install Fribidi"
-meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi > /dev/null 2>&1
-meson compile -C fribidi_builddir > /dev/null 2>&1
-meson install -C fribidi_builddir > /dev/null 2>&1
+meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
+meson compile -C fribidi_builddir
+meson install -C fribidi_builddir
 
 echo "Building and Installing Gperf"
 cd gperf
-./configure > /dev/null 2>&1
-make > /dev/null 2>&1
-make install > /dev/null 2>&1
+./configure
+make
+make install
 cd ..
 
 echo "Building and Installing Expat"
 cd expat
-./configure > /dev/null 2>&1
-make > /dev/null 2>&1
-make install > /dev/null 2>&1
+./configure
+make
+make install
 cd ..
 
 echo "Building and Installing Freetype"
 cd freetype
-./configure --without-harfbuzz > /dev/null 2>&1
-make > /dev/null 2>&1
-make install > /dev/null 2>&1
+./configure --without-harfbuzz
+make
+make install
 cd ..
 
 echo "Building and Install Fontconfig"
@@ -90,9 +90,11 @@ make install
 cd ..
 
 echo "Building and Installing Cairo"
-meson setup --prefix=/usr --buildtype=release -Dfontconfig=enabled -Dfreetype=enabled -Dglib=enabled -Dzlib=enabled -Dtee=enabled -Dtests=disabled cairo_builddir cairo
-meson compile -C cairo_builddir
-meson install -C cairo_builddir
+cd cairo
+./configure --enable-fontconfig --enable-freetype
+make
+make install
+cd ..
 
 echo "Buildling and Installing Pango"
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
