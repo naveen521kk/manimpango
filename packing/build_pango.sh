@@ -14,6 +14,8 @@ make install
 cd ../..
 
 PATH=$PATH:~/.local/bin
+
+chmod 777 /root/.local/bin -R
 jhbuild sanitycheck
 jhbuild build pango
 
