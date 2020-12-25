@@ -21,9 +21,8 @@ if [ -z "$FILE_PATH" ] ; then
 fi
 
 cd $TMP
-if [ -d "/path/to/dir" ]
-then
-  exit 0
+if [ -d "$PWD/pango" ] ; then
+  echo "Skipping Build"
 fi
 
 mkdir pango
