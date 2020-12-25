@@ -15,9 +15,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-18.04,macos-latest,windows-latest]
     env:
-      CIBW_BUILD: "cp37-* cp36-* cp38-* cp39-* pp*"
+      CIBW_BUILD: "cp37-* cp36-* cp38-* cp39-* pp3*"
       CIBW_SKIP: "cp35"
       CIBW_BEFORE_BUILD_LINUX: "source packing/build_pango.sh && pip install cython && cd manimpango && cythonize cmanimpango.pyx -3 -k -f && cd ../ && pip install ."
       CIBW_BEFORE_BUILD_MACOS: "brew install pango && brew install cairo && pip install cython && cd manimpango && cythonize cmanimpango.pyx -3 -k -f && cd ../ && pip install ."
