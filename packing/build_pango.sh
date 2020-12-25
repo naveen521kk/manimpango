@@ -2,7 +2,7 @@
 # build and install pango
 set -e
 
-PANGO_VERSION=1.42.4
+PANGO_VERSION=1.48.0
 GLIB_VERSION=2.67.1
 FRIBIDI_VERSION=1.0.10
 CAIRO_VERSION=1.17.4
@@ -32,13 +32,13 @@ pip3 install -U meson ninja
 
 echo "Building and Install Glib"
 meson setup --prefix=/usr --buildtype=release glib_builddir glib
-meson compile -C glib_builddir
-meson install -C glib_builddir
+meson compile -C glib_builddir > /dev/null 2>&1
+meson install -C glib_builddir > /dev/null 2>&1
 
 echo "Building and Install Fribidi"
 meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
-meson compile -C fribidi_builddir
-meson install -C fribidi_builddir
+meson compile -C fribidi_builddir > /dev/null 2>&1
+meson install -C fribidi_builddir > /dev/null 2>&1
 
 echo "Building and Installing Pixman"
 cd pixman
@@ -49,7 +49,7 @@ cd ..
 
 echo "Building and Installing Cairo"
 cd cairo
-./configure
+./configure --enable-fontconfig=yes --enable-freetype=yes
 make
 make install
 cd ..
