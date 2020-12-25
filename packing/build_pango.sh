@@ -11,6 +11,7 @@ FREETYPE_VERSION=2.9.1
 FONTCONFIG_VERSION=2.13.93
 EXPANT_VERSION=2.2.10 # TODO: change url to use this version
 GPERF_VERSION=3.1
+LIBPNG_VERSION=1.6.37
 
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
@@ -33,6 +34,7 @@ python $FILE_PATH/packing/download_and_extract.py "https://www.freedesktop.org/s
 python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz" freetype
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.xz" expat
 python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
+python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge.net/project/libpng/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz" libpng
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
@@ -73,6 +75,11 @@ echo "Building and Install Fontconfig"
 meson setup --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig
 meson compile -C fontconfig_builddir
 meson install -C fontconfig_builddir
+
+echo "Building and Install Libpng"
+./configure
+make
+make install
 
 echo "Building and Installing Pixman"
 cd pixman
