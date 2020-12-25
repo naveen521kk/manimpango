@@ -7,6 +7,7 @@ GLIB_VERSION=2.67.1
 FRIBIDI_VERSION=1.0.10
 CAIRO_VERSION=1.17.4
 PIXMAN_VERSION=0.40.0
+FREETYPE_VERSION=2.9.1
 FONTCONFIG_VERSION=2.13.93
 
 FILE_PATH="`dirname \"$0\"`"
@@ -27,6 +28,7 @@ python $FILE_PATH/packing/download_and_extract.py "https://github.com/fribidi/fr
 python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/snapshots/cairo-${CAIRO_VERSION}.tar.xz" cairo
 python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/releases/pixman-${PIXMAN_VERSION}.tar.gz" pixman
 python $FILE_PATH/packing/download_and_extract.py "https://www.freedesktop.org/software/fontconfig/release/fontconfig-${FONTCONFIG_VERSION}.tar.xz" fontconfig
+python $FILE_PATH/packing/download_and_extract.py "https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz" freetype
 python -m pip uninstall -y requests
 
 echo "Installing Meson and Ninja"
@@ -41,6 +43,13 @@ echo "Building and Install Fribidi"
 meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
 meson compile -C fribidi_builddir > /dev/null 2>&1
 meson install -C fribidi_builddir > /dev/null 2>&1
+
+echo "Building and Installing Freetype"
+cd freetype
+./configure --without-harfbuzz
+make
+make install
+cd ..
 
 echo "Building and Install Fontconfig"
 cd fontconfig
