@@ -48,7 +48,7 @@ echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
 echo "Building and Install Glib"
-meson setup --prefix=/usr --buildtype=release glib_builddir glib > /dev/null 2>&1
+meson setup --prefix=/usr -Ddefault_library=static --buildtype=release glib_builddir glib > /dev/null 2>&1
 meson compile -C glib_builddir > /dev/null 2>&1
 meson install -C glib_builddir > /dev/null 2>&1
 
