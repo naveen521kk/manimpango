@@ -3,7 +3,7 @@
 set -e
 
 PANGO_VERSION=1.42.4
-GLIB_VERSION=2.57.1
+GLIB_VERSION=2.59.2
 FRIBIDI_VERSION=1.0.10
 CAIRO_VERSION=1.15.14
 PIXMAN_VERSION=0.40.0
@@ -14,7 +14,7 @@ GPERF_VERSION=3.1
 LIBPNG_VERSION=1.6.37
 HARFBUZZ_VERSION=2.7.3
 ZLIB_VERSION=1.2.11
-GOBJECTINTROSPECTION_VERSION=1.66.1
+
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
 if [ -z "$FILE_PATH" ] ; then
@@ -33,7 +33,6 @@ echo "Downloading Pango"
 
 python -m pip install requests
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/pango/${PANGO_VERSION%.*}/pango-${PANGO_VERSION}.tar.xz" pango
-python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/gobject-introspection/${GOBJECTINTROSPECTION_VERSION%.*}/gobject-introspection-${GOBJECTINTROSPECTION_VERSION}.tar.xz" gobject-introspection
 python $FILE_PATH/packing/download_and_extract.py "http://download.gnome.org/sources/glib/${GLIB_VERSION%.*}/glib-${GLIB_VERSION}.tar.xz" glib
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/fribidi/fribidi/releases/download/v${FRIBIDI_VERSION}/fribidi-${FRIBIDI_VERSION}.tar.xz" fribidi
 python $FILE_PATH/packing/download_and_extract.py "https://cairographics.org/snapshots/cairo-${CAIRO_VERSION}.tar.xz" cairo
@@ -116,12 +115,6 @@ echo "Building and Installing Harfbuzz"
 meson setup --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz
 meson compile -C harfbuzz_builddir
 meson install -C harfbuzz_builddir
-
-
-echo "Buildling and Installing Gobject Introspection"
-meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled gobject_builddir gobject-introspection
-meson compile -C gobject_builddir
-meson install -C gobject_builddir
 
 echo "Buildling and Installing Pango"
 meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
