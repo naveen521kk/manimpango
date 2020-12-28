@@ -60,10 +60,11 @@ make install
 cd ..
 
 echo "Building and Install Intl"
-meson setup --prefix=/usr --buildtype=release Intl_builddir intl
+cd intl
+meson setup --prefix=/usr --buildtype=release Intl_builddir proxy-libintl-0.1
 meson compile -C Intl_builddir
 meson install -C Intl_builddir
-
+cd ..
 echo "Building and Install gtk-doc"
 meson setup --prefix=/usr --buildtype=release gtk-doc_builddir gtk-doc
 meson compile -C gtk-doc_builddir
