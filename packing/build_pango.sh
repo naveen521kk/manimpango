@@ -14,6 +14,7 @@ GPERF_VERSION=3.1
 LIBPNG_VERSION=1.6.37
 HARFBUZZ_VERSION=2.7.3
 ZLIB_VERSION=1.2.11
+LIBINTL_VERSION=0.1
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
 if [ -z "$FILE_PATH" ] ; then
@@ -43,6 +44,8 @@ python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gn
 python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge.net/project/libpng/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz" libpng
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
 python $FILE_PATH/packing/download_and_extract.py "https://zlib.net/fossils/zlib-${ZLIB_VERSION}.tar.gz" zlib
+python $FILE_PATH/packing/download_and_extract.py "https://github.com/frida/proxy-libintl/archive/${LIBINTL_VERSION}.zip" intl
+python $FILE_PATH/packing/download_and_extract.py "https://gitlab.gnome.org/GNOME/gtk-doc/-/archive/master/gtk-doc-master.tar.gz" gtk-doc
 python -m pip uninstall -y requests
 echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
@@ -53,6 +56,16 @@ cd zlib
 make
 make install
 cd ..
+
+echo "Building and Install Intl"
+meson setup --prefix=/usr --buildtype=release Intl_builddir intl
+meson compile -C Intl_builddir
+meson install -C Intl_builddir
+
+echo "Building and Install gtk-doc"
+meson setup --prefix=/usr --buildtype=release gtk-doc_builddir gtk-doc
+meson compile -C gtk-doc_builddir
+meson install -C gtk-doc_builddir
 
 echo "Building and Install Glib"
 meson setup --prefix=/usr --buildtype=release glib_builddir glib
