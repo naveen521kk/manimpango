@@ -49,6 +49,7 @@ pip3 install -U meson ninja
 
 export PKG_CONFIG_PATH="/pango/lib/pkg-config:${PKG_CONFIG_PATH}"
 export LD_LIBRARY_PATH="/pango/lib:${LD_LIBRARY_PATH}"
+export PATH="/pango/bin:${PATH}"
 
 echo "Building and Install Glib"
 meson setup --prefix=/pango --default-library=both --buildtype=release glib_builddir glib
