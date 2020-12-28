@@ -48,9 +48,11 @@ echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
 echo "Building and Install Zlib"
+cd zlib
 ./configure
 make
 make install
+cd ..
 
 echo "Building and Install Glib"
 meson setup --prefix=/usr --buildtype=release glib_builddir glib
