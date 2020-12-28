@@ -2,8 +2,8 @@
 # build and install pango
 set -e
 
-PANGO_VERSION=1.48.0
-GLIB_VERSION=2.67.1
+PANGO_VERSION=1.42.4
+GLIB_VERSION=2.56.4
 FRIBIDI_VERSION=1.0.10
 CAIRO_VERSION=1.15.14
 PIXMAN_VERSION=0.40.0
@@ -13,7 +13,7 @@ EXPANT_VERSION=2.2.10 # TODO: change url to use this version
 GPERF_VERSION=3.1
 LIBPNG_VERSION=1.6.37
 HARFBUZZ_VERSION=2.7.3
-
+ZLIB_VERSION=1.2.11
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
 if [ -z "$FILE_PATH" ] ; then
@@ -42,79 +42,80 @@ python $FILE_PATH/packing/download_and_extract.py "https://github.com/libexpat/l
 python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gnu/gperf/gperf-${GPERF_VERSION}.tar.gz" gperf
 python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge.net/project/libpng/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz" libpng
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
+python $FILE_PATH/packing/download_and_extract.py "https://zlib.net/fossils/zlib-${ZLIB_VERSION}.tar.gz" zlib
 python -m pip uninstall -y requests
-
 echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
 
-export PKG_CONFIG_PATH="/pango/lib/pkg-config:${PKG_CONFIG_PATH}"
-export LD_LIBRARY_PATH="/pango/lib:${LD_LIBRARY_PATH}"
-export PATH="/pango/bin:${PATH}"
+echo "Building and Install Zlib"
+./configure
+make
+make install
 
 echo "Building and Install Glib"
-meson setup --prefix=/pango --default-library=both --buildtype=release glib_builddir glib
+meson setup --prefix=/usr --buildtype=release glib_builddir glib
 meson compile -C glib_builddir
 meson install -C glib_builddir
 
 echo "Building and Install Fribidi"
-meson setup --prefix=/pango --buildtype=release fribidi_builddir fribidi
+meson setup --prefix=/usr --buildtype=release fribidi_builddir fribidi
 meson compile -C fribidi_builddir
 meson install -C fribidi_builddir
 
 echo "Building and Installing Gperf"
 cd gperf
-./configure --prefix=/pango
+./configure
 make
 make install
 cd ..
 
 echo "Building and Installing Expat"
 cd expat
-./configure --prefix=/pango
+./configure
 make
 make install
 cd ..
 
 echo "Building and Installing Freetype"
 cd freetype
-./configure --prefix=/pango --without-harfbuzz
+./configure --without-harfbuzz
 make
 make install
 cd ..
 
 echo "Building and Install Fontconfig"
-meson setup --prefix=/pango --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig
+meson setup --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled -Dtools=disabled fontconfig_builddir fontconfig
 meson compile -C fontconfig_builddir
 meson install -C fontconfig_builddir
 
 echo "Building and Install Libpng"
 cd libpng
-./configure --prefix=/pango
+./configure
 make
 make install
 cd ..
 echo "Building and Installing Pixman"
 cd pixman
-./configure --prefix=/pango
+./configure
 make
 make install
 cd ..
 
 echo "Building and Installing Cairo"
 cd cairo
-./configure --enable-fontconfig --enable-freetype --prefix=/pango
+./configure --enable-fontconfig --enable-freetype
 make
 make install
 cd ..
 
 echo "Building and Installing Harfbuzz"
-meson setup --prefix=/pango --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz
+meson setup --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled harfbuzz_builddir harfbuzz
 meson compile -C harfbuzz_builddir
 meson install -C harfbuzz_builddir
 
 
 echo "Buildling and Installing Pango"
-meson setup --prefix=/pango --buildtype=release -Dintrospection=disabled pango_builddir pango
+meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
 meson compile -C pango_builddir
 meson install -C pango_builddir
 
