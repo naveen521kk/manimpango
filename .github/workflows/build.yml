@@ -64,11 +64,11 @@ jobs:
         if: runner.os != 'windows'
         run: |
           python -m cibuildwheel --output-dir wheelhouse
-          7z a wheels.7z wheelhouse/*.whl
+          7z a wheels.zip wheelhouse/*.whl
 
       - uses: actions/upload-artifact@v2
         with:
-          path: ./wheels.7z
+          path: ./wheels.zip
           name: wheels-${{ runner.os }}
       - name: Publish (Release)
         if: ${{  github.event_name== 'release' && runner.os == 'Linux' }}
@@ -91,3 +91,26 @@ jobs:
           twine upload wheelhouse/*.whl
           twine upload wheelhouse/*.whl
           twine upload wheelhouse/*.whl
+      - name: Create Release
+        id: create_release
+        if: runner.os == 'linux'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version.outputs.pango }}
+          release_name: Release v${{ steps.get_version.outputs.pango }}
+          body: |
+            This release contains
+          draft: false
+          prerelease: true
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        if: runner.os == 'linux'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: wheels.zip
+          asset_name: wheels-linux.zip
+          asset_content_type: application/zip
