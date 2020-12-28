@@ -110,8 +110,8 @@ meson install -C harfbuzz_builddir > /dev/null 2>&1
 
 
 echo "Buildling and Installing Pango"
-meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango > /dev/null 2>&1
-meson compile -C pango_builddir > /dev/null 2>&1
-meson install -C pango_builddir > /dev/null 2>&1
+meson setup --prefix=/usr --buildtype=release -Dintrospection=disabled pango_builddir pango
+meson compile -C pango_builddir
+meson install -C pango_builddir
 
 cd $FILE_PATH
