@@ -14,7 +14,6 @@ GPERF_VERSION=3.1
 LIBPNG_VERSION=1.6.37
 HARFBUZZ_VERSION=2.7.3
 ZLIB_VERSION=1.2.11
-LIBINTL_VERSION=0.1
 FILE_PATH="`dirname \"$0\"`"
 FILE_PATH="`( cd \"$FILE_PATH\" && pwd )`"
 if [ -z "$FILE_PATH" ] ; then
@@ -44,9 +43,6 @@ python $FILE_PATH/packing/download_and_extract.py "https://mirrors.kernel.org/gn
 python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge.net/project/libpng/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz" libpng
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
 python $FILE_PATH/packing/download_and_extract.py "https://zlib.net/fossils/zlib-${ZLIB_VERSION}.tar.gz" zlib
-#python $FILE_PATH/packing/download_and_extract.py "" intl
-python -c "import requests;a=requests.get('https://github.com/frida/proxy-libintl/archive/${LIBINTL_VERSION}.zip');f=open('/tmp/intl.zip','wb');f.write(a.content)"
-python -m zipfile -e /tmp/intl.zip intl
 python -m pip uninstall -y requests
 echo "Installing Meson and Ninja"
 pip3 install -U meson ninja
@@ -56,13 +52,6 @@ cd zlib
 ./configure
 make
 make install
-cd ..
-
-echo "Building and Install Intl"
-cd intl
-meson setup --prefix=/usr --buildtype=release Intl_builddir proxy-libintl-0.1
-meson compile -C Intl_builddir
-meson install -C Intl_builddir
 cd ..
 
 echo "Building and Install Glib"
