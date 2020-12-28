@@ -45,7 +45,6 @@ python $FILE_PATH/packing/download_and_extract.py "https://downloads.sourceforge
 python $FILE_PATH/packing/download_and_extract.py "https://github.com/harfbuzz/harfbuzz/releases/download/${HARFBUZZ_VERSION}/harfbuzz-${HARFBUZZ_VERSION}.tar.xz" harfbuzz
 python $FILE_PATH/packing/download_and_extract.py "https://zlib.net/fossils/zlib-${ZLIB_VERSION}.tar.gz" zlib
 #python $FILE_PATH/packing/download_and_extract.py "" intl
-python $FILE_PATH/packing/download_and_extract.py "https://gitlab.gnome.org/GNOME/gtk-doc/-/archive/master/gtk-doc-master.tar.gz" gtk-doc
 python -c "import requests;a=requests.get('https://github.com/frida/proxy-libintl/archive/${LIBINTL_VERSION}.zip');f=open('/tmp/intl.zip','wb');f.write(a.content)"
 python -m zipfile -e /tmp/intl.zip intl
 python -m pip uninstall -y requests
@@ -65,10 +64,6 @@ meson setup --prefix=/usr --buildtype=release Intl_builddir proxy-libintl-0.1
 meson compile -C Intl_builddir
 meson install -C Intl_builddir
 cd ..
-echo "Building and Install gtk-doc"
-meson setup --prefix=/usr --buildtype=release gtk-doc_builddir gtk-doc
-meson compile -C gtk-doc_builddir
-meson install -C gtk-doc_builddir
 
 echo "Building and Install Glib"
 meson setup --prefix=/usr --buildtype=release -Dselinux=disabled glib_builddir glib
