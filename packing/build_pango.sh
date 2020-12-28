@@ -56,7 +56,7 @@ make install
 cd ..
 
 echo "Building and Install Glib"
-meson setup --prefix=/usr --buildtype=release -Dselinux=false -Dlibmount=false glib_builddir glib
+meson setup --prefix=/usr --buildtype=release -Dselinux=disabled -Dlibmount=disabled glib_builddir glib
 meson compile -C glib_builddir
 meson install -C glib_builddir
 
