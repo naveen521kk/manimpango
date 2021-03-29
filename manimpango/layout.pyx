@@ -7,6 +7,11 @@
 # gets a bit easy.
 
 cdef class Layout:
-
-    def __init__(self):
+    def __cinit__(self, renderer: LayoutRenderer):
+        # this is the place where we should initialise
+        # things. So, first initialse layout.
+        # this will create a ``LayoutRenderer`` and it
+        # use that everywhere.
+        self._renderer = LayoutRenderer
+    def __init__(self, renderer: LayoutRenderer):
         pass

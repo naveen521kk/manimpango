@@ -1,0 +1,2 @@
+class CairoException(Exception):
+    pass
