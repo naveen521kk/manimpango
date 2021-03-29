@@ -207,8 +207,8 @@ if coverage:
 
 ext_modules = [
     Extension(
-        "manimpango.cmanimpango",
-        [str(base_file / ("cmanimpango" + ext))],
+        "manimpango._deprecated.cmanimpango",
+        [str(base_file / "_deprecated" / ("cmanimpango" + ext))],
         **returns,
     ),
     Extension(
@@ -221,12 +221,23 @@ ext_modules = [
         [str(base_file / ("register_font" + ext))],
         **returns,
     ),
+    # New one's here
+    Extension(
+        "manimpango._cutils",
+        [str(base_file / ("_cutils" + ext))],
+        **returns,
+    ),
+    Extension(
+        "manimpango.colours",
+        [str(base_file / ("colours" + ext))],
+        **returns,
+    ),
 ]
 if USE_CYTHON:
     ext_modules = cythonize(
         ext_modules,
         language_level=3,
-        include_path=["manimpango"],
+        include_path=["manimpango","manimpango/_deprecated"],
         gdb_debug=DEBUG,
         compiler_directives={"linetrace": coverage},
     )

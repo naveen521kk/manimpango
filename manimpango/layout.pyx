@@ -7,5 +7,6 @@
 # gets a bit easy.
 
 cdef class Layout:
+
     def __init__(self):
         pass

@@ -3,16 +3,13 @@
 # attributes.
 
 import copy
+
 cdef class Color:
-    cdef int red
-    cdef int green
-    cdef int blue
-    cdef PangoColor* color = NULL
     def __init__(self, red: int, green: int, blue: int):
         self.red = red
         self.green = green
         self.blue = blue
-     
+
     cpdef Color copy(self):
         """
         Make a deep copy of the ``Color`` structure.
@@ -59,7 +56,7 @@ cdef class Color:
         self._blue = int(blue)
         self.color.blue = blue
 
-    cpdef void* parse_color(self, char* spec):
+    cpdef void parse_color(self, char* spec):
         """
         Fill in the fields of a color from a string
         specification. The string can either one of
