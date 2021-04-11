@@ -213,23 +213,23 @@ ext_modules = [
     ),
     Extension(
         "manimpango.utils.enums",
-        [str(base_file/ "utils" / ("enums" + ext))],
+        [str(base_file / "utils" / ("enums" + ext))],
         **returns,
     ),
     Extension(
         "manimpango.register_font.register_font",
-        [str(base_file / 'register_font' / ("register_font" + ext))],
+        [str(base_file / "register_font" / ("register_font" + ext))],
         **returns,
     ),
     # New one's here
     Extension(
         "manimpango.utils._cutils",
-        [str(base_file / 'utils'/("_cutils" + ext))],
+        [str(base_file / "utils" / ("_cutils" + ext))],
         **returns,
     ),
     Extension(
         "manimpango.utils.colours",
-        [str(base_file / 'utils' / ("colours" + ext))],
+        [str(base_file / "utils" / ("colours" + ext))],
         **returns,
     ),
     # Extension(
@@ -242,7 +242,7 @@ if USE_CYTHON:
     ext_modules = cythonize(
         ext_modules,
         language_level=3,
-        include_path=[str(i) for i in Path('manimpango').iterdir() if i.is_dir()],
+        include_path=[str(i) for i in Path("manimpango").iterdir() if i.is_dir()],
         gdb_debug=DEBUG,
         compiler_directives={"linetrace": coverage},
     )

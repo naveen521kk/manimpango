@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-import os
 import sys
 
+from . import _distributor_init  # noqa: F401
 from ._version import __version__  # noqa: F403,F401
-from . import _distributor_init
 
 try:
     from ._deprecated import *  # noqa: F403,F401
-    from .utils import *  # noqa: F403,F401
     from .register_font import *  # noqa: F403,F401
+    from .utils import *  # noqa: F403,F401
+
     # from ._cutils import *  # noqa: F403,F401
 except ImportError as ie:  # pragma: no cover
     py_ver = ".".join(map(str, sys.version_info[:3]))

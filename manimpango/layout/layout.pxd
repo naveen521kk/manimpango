@@ -4,4 +4,3 @@ cdef class LayoutRenderer:
     cpdef bint render(self)
 
 cdef class SVGRenderer(BaseRenderer):
-    

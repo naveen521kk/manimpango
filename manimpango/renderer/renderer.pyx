@@ -3,7 +3,7 @@ import copy
 from .exception import CairoException
 
 cdef class BaseRenderer:
-    # This class should contain things 
+    # This class should contain things
     # should provide API to render to an SVG
     # or get the buffer.
     def __init__(self):
@@ -24,7 +24,7 @@ cdef class BaseRenderer:
 
 cdef class SVGRenderer(BaseRenderer):
     def __cinit__(
-        self, 
+        self,
         file_name: str,
         width:int,
         height:int,
@@ -63,7 +63,7 @@ cdef class SVGRenderer(BaseRenderer):
         self.surface = surface
         self.context = context
         self.layout = layout
-    
+
     def __init__(self, file_name: str, width:int, height:int, move_to: T.Tuple[int,int]):
         self.file_name = file_name
         self.width = width
@@ -88,19 +88,18 @@ cdef class SVGRenderer(BaseRenderer):
         surface = self.surface
         layout = self.layout
         pango_cairo_show_layout(context, layout)
-    
+
         # check for status again
         status = self.is_context_fine()
         if status:
             raise CairoException(status)
-        
+
         # should I clean it up here?
         # In that case calling this function
         # will result in SegFaults.
-        # I think calling this function again 
+        # I think calling this function again
         # is waste.
     def __dealloc__(self):
         cairo_destroy(self.context)
         cairo_surface_destroy(self.surface)
         g_object_unref(self.layout)
-

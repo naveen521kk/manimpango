@@ -12,7 +12,7 @@ from cpython cimport PyBuffer_FillInfo, PyBUF_WRITABLE
 cdef class BaseBuffer:
     """A base for Buffer which can be read using Pillow
     or converted to an array using Numpy.
-    
+
     Note
     ====
     The buffer or array isn't writable.
@@ -50,9 +50,9 @@ cdef class BaseBuffer:
 
 cdef class ImageBuffer(Buffer):
     # This will give the ImageBuffer from Cairo.
-    # The Cairo's surface shouldn't be destroyed 
+    # The Cairo's surface shouldn't be destroyed
     # before reading this or else it would create
-    # SegFaults. Now, we don't plan to depend on 
+    # SegFaults. Now, we don't plan to depend on
     # Numpy so we are going to get a reference of
     # the Cairo's surface and free it up only when
     # this buffer is garbage collected.
@@ -68,7 +68,7 @@ cdef class ImageBuffer(Buffer):
         # destroy the surface and context we have
         cairo_destroy(self.cr)
         cairo_surface_destroy(self.surface)
-    
+
     cdef int set_cairo_data(
         self,
         cairo_t* cr,

@@ -1,5 +1,5 @@
 # This module contains implementation of Colours as how
-# it is Pango. Should be helpful when we implement 
+# it is Pango. Should be helpful when we implement
 # attributes.
 
 import copy
