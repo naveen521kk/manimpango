@@ -1,6 +1,6 @@
-import typings as T
+import typing as T
 import copy
-from .exception import CairoException
+from ..exceptions import CairoException
 
 cdef class BaseRenderer:
     # This class should contain things
@@ -64,7 +64,7 @@ cdef class SVGRenderer(BaseRenderer):
         self.context = context
         self.layout = layout
 
-    def __init__(self, file_name: str, width:int, height:int, move_to: T.Tuple[int,int]):
+    def __init__(self, file_name: str, width:int, height:int, move_to: T.Tuple[int,int] = (0,0)):
         self.file_name = file_name
         self.width = width
         self.height = height

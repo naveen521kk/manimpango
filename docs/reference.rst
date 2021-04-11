@@ -20,3 +20,11 @@ Enums
    manimpango.Style
    manimpango.Weight
    manimpango.Variant
+
+Everything
+==========
+
+.. autosummary::
+   :toctree: reference
+
+   manimpango

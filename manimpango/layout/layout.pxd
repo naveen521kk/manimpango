@@ -1,6 +1,5 @@
-cdef class LayoutRenderer:
+from ..renderer.renderer cimport BaseRenderer
+from pango cimport *
+cdef class Layout:
     cdef PangoLayout* layout
-    cdef LayoutRenderer _renderer
-    cpdef bint render(self)
-
-cdef class SVGRenderer(BaseRenderer):
+    cdef BaseRenderer renderer

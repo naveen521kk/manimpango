@@ -232,11 +232,16 @@ ext_modules = [
         [str(base_file / "utils" / ("colours" + ext))],
         **returns,
     ),
-    # Extension(
-    #     "manimpango.renderer",
-    #     [str(base_file / ("renderer" + ext))],
-    #     **returns,
-    # ),
+    Extension(
+        "manimpango.renderer.renderer",
+        [str(base_file / "renderer" / ("renderer" + ext))],
+        **returns,
+    ),
+    Extension(
+        "manimpango.layout.layout",
+        [str(base_file / "layout" / ("layout" + ext))],
+        **returns,
+    ),
 ]
 if USE_CYTHON:
     ext_modules = cythonize(

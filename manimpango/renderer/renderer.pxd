@@ -10,4 +10,6 @@ cdef class BaseRenderer:
     cdef str is_context_fine(self)
 
 cdef class SVGRenderer(BaseRenderer):
-    pass
+    cdef str file_name
+    cdef float width
+    cdef float height

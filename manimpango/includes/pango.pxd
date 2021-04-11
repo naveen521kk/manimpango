@@ -148,6 +148,24 @@ cdef extern from "pango/pangocairo.h":
     gchar* pango_color_to_string(
         const PangoColor *color
     )
+    PangoLayout* pango_layout_copy(
+        PangoLayout* src
+    )
+    PangoAlignment pango_layout_get_alignment(
+        PangoLayout* layout
+    )
+    void pango_layout_set_alignment(
+        PangoLayout* layout,
+        PangoAlignment alignment
+    )
+    gboolean pango_layout_get_auto_dir(
+        PangoLayout* layout
+    )
+    void pango_layout_set_auto_dir(
+        PangoLayout* layout,
+        gboolean auto_dir
+    )
+
 
 cdef extern from *:
     """
