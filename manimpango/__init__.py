@@ -3,13 +3,8 @@ import os
 import sys
 
 from ._version import __version__  # noqa: F403,F401
+from . import _distributor_init
 
-if os.name == "nt":  # pragma: no cover
-    os.environ["PATH"] = (
-        f"{os.path.abspath(os.path.dirname(__file__))}"
-        f"{os.pathsep}"
-        f"{os.environ['PATH']}"
-    )
 try:
     from ._deprecated import *  # noqa: F403,F401
     from .utils import *  # noqa: F403,F401
