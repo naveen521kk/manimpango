@@ -9,6 +9,7 @@
 
 from pathlib import Path
 from pango cimport *
+
 import copy
 IF UNAME_SYSNAME == "Linux":
     cpdef bint register_font(str font_path):

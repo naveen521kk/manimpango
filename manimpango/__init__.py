@@ -10,9 +10,9 @@ if os.name == "nt":  # pragma: no cover
         f"{os.environ['PATH']}"
     )
 try:
-    from ._deprecated.cmanimpango import *  # noqa: F403,F401
-    from .enums import *  # noqa: F403,F401
+    from ._deprecated import *  # noqa: F403,F401
+    from .utils import *  # noqa: F403,F401
     from .register_font import *  # noqa: F403,F401
-    from ._cutils import *  # noqa: F403,F401
+    # from ._cutils import *  # noqa: F403,F401
 except ImportError:  # pragma: no cover
     raise ImportError("Couldn't load the necessary Shared Libraries.")

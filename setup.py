@@ -212,37 +212,37 @@ ext_modules = [
         **returns,
     ),
     Extension(
-        "manimpango.enums",
-        [str(base_file / ("enums" + ext))],
+        "manimpango.utils.enums",
+        [str(base_file/ "utils" / ("enums" + ext))],
         **returns,
     ),
     Extension(
-        "manimpango.register_font",
-        [str(base_file / ("register_font" + ext))],
+        "manimpango.register_font.register_font",
+        [str(base_file / 'register_font' / ("register_font" + ext))],
         **returns,
     ),
     # New one's here
     Extension(
-        "manimpango._cutils",
-        [str(base_file / ("_cutils" + ext))],
+        "manimpango.utils._cutils",
+        [str(base_file / 'utils'/("_cutils" + ext))],
         **returns,
     ),
     Extension(
-        "manimpango.colours",
-        [str(base_file / ("colours" + ext))],
+        "manimpango.utils.colours",
+        [str(base_file / 'utils' / ("colours" + ext))],
         **returns,
     ),
-    Extension(
-        "manimpango.renderer",
-        [str(base_file / ("renderer" + ext))],
-        **returns,
-    ),
+    # Extension(
+    #     "manimpango.renderer",
+    #     [str(base_file / ("renderer" + ext))],
+    #     **returns,
+    # ),
 ]
 if USE_CYTHON:
     ext_modules = cythonize(
         ext_modules,
         language_level=3,
-        include_path=["manimpango","manimpango/_deprecated"],
+        include_path=[str(i) for i in Path('manimpango').iterdir() if i.is_dir()],
         gdb_debug=DEBUG,
         compiler_directives={"linetrace": coverage},
     )

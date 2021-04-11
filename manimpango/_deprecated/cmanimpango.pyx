@@ -1,6 +1,5 @@
 from xml.sax.saxutils import escape
 from ..utils import *
-from ..enums import Alignment
 import warnings
 from glib cimport *
 from cairo cimport *
