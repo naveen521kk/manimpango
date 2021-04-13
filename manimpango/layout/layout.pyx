@@ -43,13 +43,13 @@ cdef class Layout:
     def auto_dir(self):
         """Whether to calculate the base direction
         for the layout according to its contents.
-        
+
         When this flag is on (the default), then paragraphs
         in ``layout`` that begin with strong right-to-left
         characters (Arabic and Hebrew principally), will have
         right-to-left layout, paragraphs with letters from other
         scripts will have left-to-right layout. Paragraphs with
-        only neutral characters get their direction from the 
+        only neutral characters get their direction from the
         surrounding paragraphs.
 
         When False, the choice between left-to-right and right-to-left
@@ -65,5 +65,16 @@ cdef class Layout:
     @auto_dir.setter
     def auto_dir(self, auto_dir: bool):
         pango_layout_set_auto_dir(self.layout, auto_dir)
-    
-    
+
+    @property
+    def width(self):
+        """The width to which the lines of the PangoLayout
+        should wrap or ellipsized.
+
+        The default value is -1: no width set.
+        """
+        return pango_layout_get_width(self.layout)
+
+    @width.setter
+    def width(self, width: int):
+        pango_layout_set_width (self.layout, pango_units_from_double(width))

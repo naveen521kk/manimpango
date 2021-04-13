@@ -242,6 +242,11 @@ ext_modules = [
         [str(base_file / "layout" / ("layout" + ext))],
         **returns,
     ),
+    Extension(
+        "manimpango.font_description.font_description",
+        [str(base_file / "font_description" / ("font_description" + ext))],
+        **returns,
+    ),
 ]
 if USE_CYTHON:
     ext_modules = cythonize(

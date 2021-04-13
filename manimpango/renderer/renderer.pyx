@@ -100,6 +100,6 @@ cdef class SVGRenderer(BaseRenderer):
         # I think calling this function again
         # is waste.
     def __dealloc__(self):
+        g_object_unref(self.layout)
         cairo_destroy(self.context)
         cairo_surface_destroy(self.surface)
-        g_object_unref(self.layout)

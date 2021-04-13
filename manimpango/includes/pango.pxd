@@ -165,6 +165,24 @@ cdef extern from "pango/pangocairo.h":
         PangoLayout* layout,
         gboolean auto_dir
     )
+    int pango_layout_get_width(
+        PangoLayout* layout
+    )
+    gboolean pango_font_description_equal(
+        const PangoFontDescription* desc1,
+        const PangoFontDescription* desc2
+    )
+    PangoFontDescription* pango_font_description_copy(
+        const PangoFontDescription* desc
+    )
+    const char* pango_font_description_get_family(
+        const PangoFontDescription* desc
+    )
+    PangoGravity
+pango_font_description_get_gravity (
+  const PangoFontDescription* desc
+)
+
 
 
 cdef extern from *:

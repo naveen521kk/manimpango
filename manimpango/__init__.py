@@ -6,10 +6,12 @@ from ._version import __version__  # noqa: F403,F401
 
 try:
     from ._deprecated import *  # noqa: F403,F401
+    from .font_description import *  # noqa: F403,F401
+    from .layout import *  # noqa: F403,F401
     from .register_font import *  # noqa: F403,F401
+    from .renderer import *  # noqa: F403,F401
     from .utils import *  # noqa: F403,F401
-    from .layout import * # noqa: F403,F401
-    from .renderer import * # noqa: F403,F401
+
     # from ._cutils import *  # noqa: F403,F401
 except ImportError as ie:  # pragma: no cover
     py_ver = ".".join(map(str, sys.version_info[:3]))
