@@ -178,10 +178,15 @@ cdef extern from "pango/pangocairo.h":
     const char* pango_font_description_get_family(
         const PangoFontDescription* desc
     )
-    PangoGravity
-pango_font_description_get_gravity (
-  const PangoFontDescription* desc
-)
+    # PangoGravity pango_font_description_get_gravity (
+    #     const PangoFontDescription* desc
+    # )
+    gint pango_font_description_get_size(
+        const PangoFontDescription* desc
+    )
+    gboolean pango_font_description_get_size_is_absolute(
+        const PangoFontDescription* desc
+    )
 
 
 

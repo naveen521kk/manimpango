@@ -27,4 +27,5 @@ Everything
 .. autosummary::
    :toctree: reference
 
-   manimpango
+   manimpango.FontDescription
+   manimpango.Layout

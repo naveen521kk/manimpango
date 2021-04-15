@@ -25,3 +25,11 @@ def test_family_property():
     assert desc.family is None
     desc.family = "Roboto"
     assert desc.family == "Roboto"
+
+
+def test_size_property():
+    desc = FontDescription()
+    assert desc.size == 0
+    desc.size = 20
+    assert desc.size == 20
+    assert desc.size_is_absolute is False
