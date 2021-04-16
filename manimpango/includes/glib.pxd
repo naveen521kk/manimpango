@@ -7,3 +7,4 @@ cdef extern from "glib.h":
     ctypedef char gchar
     void g_object_unref(gpointer object)
     void g_free(gpointer mem)
+    void g_set_prgname(const gchar *prgname)

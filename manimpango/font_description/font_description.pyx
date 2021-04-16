@@ -104,6 +104,8 @@ cdef class FontDescription:
     #        family.encode('utf-8'),
     #    )
 
+    # TODO: implement other properties
+
     def __eq__(self, other: FontDescription) -> bool:
         if isinstance(other, FontDescription):
             return bool(pango_font_description_equal(self.font_description, other.font_description))
