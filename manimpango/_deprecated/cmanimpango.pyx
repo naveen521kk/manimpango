@@ -4,7 +4,7 @@ import warnings
 from glib cimport *
 from cairo cimport *
 from pango cimport *
-import warnings
+import typing
 
 def raise_deprecation_warning(name):
     msg = (
@@ -44,7 +44,8 @@ def text2svg(
     START_Y:int,
     width:int,
     height:int,
-    orig_text:str
+    orig_text:str,
+    pango_width: typing.Union[int, None] = None,
 ) -> int:
     """Render an SVG file from a :class:`manim.mobject.svg.text_mobject.Text` object."""
     raise_deprecation_warning("text2svg")
@@ -52,7 +53,6 @@ def text2svg(
     cdef cairo_t* cr
     cdef PangoFontDescription* font_desc
     cdef PangoLayout* layout
-    cdef double width_layout = width
     cdef double font_size_c = size
     cdef cairo_status_t status
     cdef int temp_width
@@ -81,12 +81,16 @@ def text2svg(
 
     layout = pango_cairo_create_layout(cr)
 
-    if layout==NULL:
+    if layout == NULL:
         cairo_destroy(cr)
         cairo_surface_destroy(surface)
         raise MemoryError("Pango.Layout can't be created from Cairo Context.")
 
-    pango_layout_set_width(layout, pango_units_from_double(width_layout))
+    if pango_width is None:
+        pango_layout_set_width(layout, pango_units_from_double(width))
+    else:
+        pango_layout_set_width(layout, pango_units_from_double(pango_width))
+
     for setting in settings:
         family = setting.font
         style = PangoUtils.str2style(setting.slant)
@@ -166,7 +170,8 @@ class MarkupUtils:
         justify: bool = None,
         indent: float = None,
         line_spacing: float = None,
-        alignment: Alignment = None
+        alignment: Alignment = None,
+        pango_width: typing.Union[int, None] = None,
     ) -> int:
         """Render an SVG file from a :class:`manim.mobject.svg.text_mobject.MarkupText` object."""
         raise_deprecation_warning("MarkupUtils.text2svg")
@@ -175,7 +180,6 @@ class MarkupUtils:
         cdef PangoFontDescription* font_desc
         cdef PangoLayout* layout
         cdef cairo_status_t status
-        cdef double width_layout = width - 50
         cdef double font_size = size
         cdef int temp_int # a temporary C integer for conversion
 
@@ -202,12 +206,15 @@ class MarkupUtils:
 
         cairo_move_to(context,START_X,START_Y)
         layout = pango_cairo_create_layout(context)
-        if layout==NULL:
+        if layout == NULL:
             cairo_destroy(context)
             cairo_surface_destroy(surface)
             raise MemoryError("Pango.Layout can't be created from Cairo Context.")
 
-        pango_layout_set_width(layout, pango_units_from_double(width_layout))
+        if pango_width is None:
+            pango_layout_set_width(layout, pango_units_from_double(width))
+        else:
+            pango_layout_set_width(layout, pango_units_from_double(pango_width))
 
         if justify:
             pango_layout_set_justify(layout, justify)
