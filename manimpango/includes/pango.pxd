@@ -187,6 +187,10 @@ cdef extern from "pango/pangocairo.h":
     gboolean pango_font_description_get_size_is_absolute(
         const PangoFontDescription* desc
     )
+    const char* pango_layout_get_text(
+        PangoLayout* layout
+    )
+
 
 
 

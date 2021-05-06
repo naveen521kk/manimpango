@@ -99,6 +99,10 @@ cdef class SVGRenderer(BaseRenderer):
         # will result in SegFaults.
         # I think calling this function again
         # is waste.
+        g_object_unref(self.layout)
+        cairo_destroy(self.context)
+        cairo_surface_destroy(self.surface)
+        return True
     def __dealloc__(self):
         g_object_unref(self.layout)
         cairo_destroy(self.context)

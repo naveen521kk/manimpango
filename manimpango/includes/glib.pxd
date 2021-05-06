@@ -8,3 +8,8 @@ cdef extern from "glib.h":
     void g_object_unref(gpointer object)
     void g_free(gpointer mem)
     void g_set_prgname(const gchar *prgname)
+    ctypedef struct GError:
+        gint code
+        gchar *message
+    void g_error_free (GError *error)
+
