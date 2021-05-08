@@ -223,8 +223,8 @@ ext_modules = [
         **returns,
     ),
     Extension(
-        "manimpango.register_font.register_font",
-        [str(base_file / "register_font" / ("register_font" + ext))],
+        "manimpango.font_manager._register_font",
+        [str(base_file / "font_manager" / ("_register_font" + ext))],
         **returns,
     ),
     # New one's here
@@ -248,14 +248,19 @@ ext_modules = [
     #     [str(base_file / "layout" / ("layout" + ext))],
     #     **returns,
     # ),
-    Extension(
-        "manimpango.font_description.font_description",
-        [str(base_file / "font_description" / ("font_description" + ext))],
-        **returns,
-    ),
+    # Extension(
+    #     "manimpango.font_manager.font_description",
+    #     [str(base_file / "font_manager" / ("font_description" + ext))],
+    #     **returns,
+    # ),
     Extension(
         "manimpango.layout.utils",
         [str(base_file / "layout" / ("utils" + ext))],
+        **returns,
+    ),
+    Extension(
+        "manimpango.utils._list_fonts",
+        [str(base_file / "utils" / ("_list_fonts" + ext))],
         **returns,
     ),
 ]
