@@ -1,6 +1,7 @@
 from pango cimport *
+from cairo import *
 
-cpdef list list_fonts():
+cpdef list list_fonts(fontconfig=False):
     """Lists the fonts available to Pango.
     This is usually same as system fonts but it also
     includes the fonts added through :func:`register_font`.
@@ -11,7 +12,11 @@ cpdef list list_fonts():
     :class:`list` :
         List of fonts sorted alphabetically.
     """
-    cdef PangoFontMap* fontmap = pango_cairo_font_map_new()
+    cdef PangoFontMap* fontmap
+    if fontconfig:
+        fontmap = pango_cairo_font_map_new_for_font_type(CAIRO_FONT_TYPE_FT)
+    else:
+        fontmap = pango_cairo_font_map_new()
     if fontmap is NULL:
         raise MemoryError("Pango.FontMap can't be created.")
     cdef int n_families = 0

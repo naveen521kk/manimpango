@@ -7,7 +7,7 @@ subsequent DLL.
 import glob
 import os
 
-if os.name == "nt":
+if os.name == "nt": # pragma: no cover
     try:
         from ctypes import WinDLL
 

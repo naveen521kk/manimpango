@@ -7,7 +7,7 @@ import manim
 import pytest
 
 import manimpango
-
+from manimpango.font_manager._register_font import register_font, unregister_font, fc_register_font, fc_unregister_font
 from . import FONT_DIR
 from ._manim import MarkupText
 
@@ -23,14 +23,14 @@ font_lists = {
 def test_unicode_font_name(tmpdir):
     final_font = str(Path(tmpdir, "庞门正.ttf").absolute())
     copyfile(FONT_DIR / "AdobeVFPrototype.ttf", final_font)
-    assert manimpango.register_font(final_font)
-    assert manimpango.unregister_font(final_font)
+    assert register_font(final_font)
+    assert unregister_font(final_font)
 
 
 @pytest.mark.parametrize("font_name", font_lists)
 def test_register_font(font_name):
     intial = manimpango.list_fonts()
-    assert manimpango.register_font(str(font_name)), "Invalid Font possibly."
+    assert register_font(str(font_name)), "Invalid Font possibly."
     final = manimpango.list_fonts()
     assert intial != final
 
@@ -49,7 +49,7 @@ def test_warning(capfd, font_name):
 @pytest.mark.parametrize("font_name", font_lists)
 def test_unregister_font(font_name):
     intial = manimpango.list_fonts()
-    assert manimpango.unregister_font(str(font_name)), "Failed to unregister the font"
+    assert unregister_font(str(font_name)), "Failed to unregister the font"
     final = manimpango.list_fonts()
     assert intial != final
 
@@ -59,8 +59,8 @@ def test_unregister_font(font_name):
 )
 @pytest.mark.parametrize("font_name", font_lists)
 def test_register_and_unregister_font(font_name):
-    assert manimpango.register_font(str(font_name)), "Invalid Font possibly."
-    assert manimpango.unregister_font(str(font_name)), "Failed to unregister the font"
+    assert register_font(str(font_name)), "Invalid Font possibly."
+    assert unregister_font(str(font_name)), "Failed to unregister the font"
 
 
 @pytest.mark.skipif(
@@ -69,7 +69,7 @@ def test_register_and_unregister_font(font_name):
 @pytest.mark.parametrize("font_name", font_lists)
 @pytest.mark.skipif(sys.platform.startswith("darwin"), reason="always returns true")
 def test_fail_just_unregister(font_name):
-    assert not manimpango.unregister_font(
+    assert not unregister_font(
         str(font_name)
     ), "Failed to unregister the font"
 
@@ -79,7 +79,7 @@ def test_fail_just_unregister(font_name):
 )
 @pytest.mark.skipif(sys.platform.startswith("darwin"), reason="unsupported api for mac")
 def test_unregister_linux():
-    assert manimpango.unregister_font("random")
+    assert unregister_font("random")
 
 
 @pytest.mark.skipif(
@@ -89,7 +89,7 @@ def test_adding_dummy_font(tmpdir):
     dummy = tmpdir / "font.ttf"
     with open(dummy, "wb") as f:
         f.write(b"dummy")
-    assert not manimpango.register_font(str(dummy)), "Registered a dummy font?"
+    assert not register_font(str(dummy)), "Registered a dummy font?"
 
 
 def test_simple_fonts_render(tmpdir):
@@ -102,14 +102,14 @@ def test_simple_fonts_render(tmpdir):
     not sys.platform.startswith("linux"), reason="unsupported api other than linux"
 )
 def test_both_fc_and_register_font_are_same():
-    assert manimpango.fc_register_font == manimpango.register_font
-    assert manimpango.fc_unregister_font == manimpango.unregister_font
+    assert fc_register_font == register_font
+    assert fc_unregister_font == unregister_font
 
 
 @pytest.mark.parametrize("font_file", font_lists)
 def test_fc_font_register(setup_fontconfig, font_file):
     intial = manimpango.list_fonts()
-    assert manimpango.fc_register_font(str(font_file)), "Invalid Font possibly."
+    assert fc_register_font(str(font_file)), "Invalid Font possibly."
     final = manimpango.list_fonts()
     assert intial != final
 
@@ -117,6 +117,6 @@ def test_fc_font_register(setup_fontconfig, font_file):
 def test_fc_font_unregister(setup_fontconfig):
     # it will remove everything
     intial = manimpango.list_fonts()
-    manimpango.fc_unregister_font("clear")
+    fc_unregister_font("clear")
     final = manimpango.list_fonts()
     assert intial != final

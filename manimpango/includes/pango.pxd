@@ -190,9 +190,9 @@ cdef extern from "pango/pangocairo.h":
     const char* pango_layout_get_text(
         PangoLayout* layout
     )
-
-
-
+    PangoFontMap* pango_cairo_font_map_new_for_font_type (
+        cairo_font_type_t fonttype
+    )
 
 cdef extern from *:
     """

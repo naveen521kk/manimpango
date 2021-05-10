@@ -7,7 +7,7 @@ from pathlib import Path
 import attr
 
 from ..utils import Style, Variant, Weight, list_fonts
-from ._register_font import fc_register_font, register_font
+from ._register_font import fc_register_font, register_font, unregister_font, fc_unregister_font
 
 __all__ = ["FontProperties", "RegisterFont"]
 
@@ -19,7 +19,7 @@ class FontProperties:
         default=None,
     )
     size: typing.Optional[float] = attr.ib(
-        validator=attr.validators.optional(attr.validators.instance_of(float)),
+        validator=attr.validators.optional(attr.validators.instance_of((float,int))),
         default=None,
     )
     style: typing.Optional[Style] = attr.ib(
@@ -38,7 +38,7 @@ class FontProperties:
     # gravity
     # variations
     @size.validator
-    def check_markup(self, attribute, value):
+    def check_size(self, attribute, value):
         if value == 0:
             raise ValueError("Size shouldn't be Zero.")
 
@@ -69,28 +69,38 @@ class RegisterFont(object):
                 errno.ENOENT,
                 f"{value} doesn't exists.",
             )
+        if not Path(value).is_file():
+            raise FileNotFoundError(
+                errno.ENOENT,
+                f"{value} isn't a valid file",
+            )
 
     def __attrs_post_init__(self):
         if self.calculate_family:
-            intial = list_fonts()
+            intial = list_fonts(self.use_fontconfig)
         font_file = self.font_file
         if self.use_fontconfig:
             status = fc_register_font(str(font_file))
             if not status:
                 raise RuntimeError(
-                    f"Can't register font file {font_file}."
+                    f"Can't register font file {font_file}. "
                     "Maybe it's an invalid file ?"
                 )
         else:
             status = register_font(str(font_file))
             if not status:
                 raise RuntimeError(
-                    f"Can't register font file {font_file}."
+                    f"Can't register font file {font_file}. "
                     "Maybe it's an invalid file ?"
                 )
         if self.calculate_family:
-            final = list_fonts()
+            final = list_fonts(self.use_fontconfig)
             family = list(set(final) - set(intial)) or None
             super().__setattr__("family", family)
         else:
             super().__setattr__("family", None)
+    def unregister(self):
+        if self.use_fontconfig:
+            fc_unregister_font(str(self.font_file))
+        else:
+            unregister_font(str(self.font_file))
