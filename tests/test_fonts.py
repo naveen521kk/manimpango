@@ -3,13 +3,11 @@ import sys
 from pathlib import Path
 from shutil import copyfile
 
-import manim
 import pytest
 
 import manimpango
 from manimpango.font_manager._register_font import register_font, unregister_font, fc_register_font, fc_unregister_font
 from . import FONT_DIR
-from ._manim import MarkupText
 
 font_lists = {
     (FONT_DIR / "AdobeVFPrototype.ttf").absolute(): "Adobe Variable Font Prototype",
@@ -35,12 +33,12 @@ def test_register_font(font_name):
     assert intial != final
 
 
-@pytest.mark.parametrize("font_name", font_lists.values())
-def test_warning(capfd, font_name):
-    print(font_name)
-    manim.Text("Testing", font=font_name)
-    captured = capfd.readouterr()
-    assert "Pango-WARNING **" not in captured.err, "Looks like pango raised a warning?"
+# @pytest.mark.parametrize("font_name", font_lists.values())
+# def test_warning(capfd, font_name):
+#     print(font_name)
+#     manim.Text("Testing", font=font_name)
+#     captured = capfd.readouterr()
+#     assert "Pango-WARNING **" not in captured.err, "Looks like pango raised a warning?"
 
 
 @pytest.mark.skipif(
@@ -92,10 +90,10 @@ def test_adding_dummy_font(tmpdir):
     assert not register_font(str(dummy)), "Registered a dummy font?"
 
 
-def test_simple_fonts_render(tmpdir):
-    filename = str(Path(tmpdir) / "hello.svg")
-    MarkupText("Hello World", filename=filename)
-    assert Path(filename).exists()
+# def test_simple_fonts_render(tmpdir):
+#     filename = str(Path(tmpdir) / "hello.svg")
+#     MarkupText("Hello World", filename=filename)
+#     assert Path(filename).exists()
 
 
 @pytest.mark.skipif(

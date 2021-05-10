@@ -9,7 +9,6 @@ try:
 
     initialize_glib()  # noqa: F405
 
-    from ._deprecated import *  # noqa: F403,F401
     from .font_manager import *  # noqa: F403,F401
     from .layout import *  # noqa: F403,F401
     from .renderer import *  # noqa: F403,F401

@@ -213,11 +213,6 @@ if coverage:
 
 ext_modules = [
     Extension(
-        "manimpango._deprecated.cmanimpango",
-        [str(base_file / "_deprecated" / ("cmanimpango" + ext))],
-        **returns,
-    ),
-    Extension(
         "manimpango.utils.enums",
         [str(base_file / "utils" / ("enums" + ext))],
         **returns,
