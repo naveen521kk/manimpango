@@ -5,13 +5,14 @@ from . import _distributor_init  # noqa: F401
 from ._version import __version__  # noqa: F403,F401
 
 try:
-    from .utils import *  # noqa: F403,F401
+    from .utils._cutils import initialize_glib
 
     initialize_glib()  # noqa: F405
 
     from .font_manager import *  # noqa: F403,F401
     from .layout import *  # noqa: F403,F401
     from .renderer import *  # noqa: F403,F401
+    from .utils import *  # noqa: F403,F401
 except ImportError as ie:  # pragma: no cover
     py_ver = ".".join(map(str, sys.version_info[:3]))
     msg = f"""
