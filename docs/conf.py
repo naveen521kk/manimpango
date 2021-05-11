@@ -15,17 +15,16 @@
 # import sys
 # sys.path.insert(0, os.path.abspath(".."))
 
-
+import manimpango
 from pathlib import Path
 
 # -- Project information -----------------------------------------------------
-from pkg_resources import get_distribution
 
 project = "ManimPango"
 copyright = "2021, Naveen M K"
 author = "Naveen M K"
 
-release = get_distribution("ManimPango").version
+release = manimpango.__version__
 version = ".".join(release.split(".")[:2])
 
 
