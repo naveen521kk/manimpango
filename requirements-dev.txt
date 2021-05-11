@@ -2,4 +2,5 @@ pytest-cov
 pytest
 Cython
 coverage
-manim>0.2.0
+sphinx-rtd-theme
+sphinx

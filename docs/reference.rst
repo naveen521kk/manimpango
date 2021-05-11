@@ -4,28 +4,10 @@ Manimpango Reference
 .. autosummary::
    :toctree: reference
 
-   manimpango.TextSetting
-   manimpango.PangoUtils
-   manimpango.text2svg
-   manimpango.MarkupUtils
-   manimpango.register_font
-   manimpango.unregister_font
-   manimpango.list_fonts
-
-Enums
-=====
-.. autosummary::
-   :toctree: reference
-
-   manimpango.Style
-   manimpango.Weight
-   manimpango.Variant
-
-Everything
-==========
-
-.. autosummary::
-   :toctree: reference
-
-   manimpango.FontDescription
+   manimpango.FontProperties
+   manimpango.RegisterFont
+   manimpango.layout.utils.validate_markup
    manimpango.Layout
+   manimpango.utils.Color
+
+
