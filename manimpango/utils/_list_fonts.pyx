@@ -1,5 +1,5 @@
 from pango cimport *
-from cairo import *
+from cairo cimport *
 
 cpdef list list_fonts(fontconfig=False):
     """Lists the fonts available to Pango.
