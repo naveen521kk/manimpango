@@ -7,7 +7,8 @@ from pathlib import Path
 import attr
 
 from ..utils import Style, Variant, Weight, list_fonts
-from ._register_font import fc_register_font, register_font, unregister_font, fc_unregister_font
+from ._register_font import (fc_register_font, fc_unregister_font,
+                             register_font, unregister_font)
 
 __all__ = ["FontProperties", "RegisterFont"]
 
@@ -19,7 +20,7 @@ class FontProperties:
         default=None,
     )
     size: typing.Optional[float] = attr.ib(
-        validator=attr.validators.optional(attr.validators.instance_of((float,int))),
+        validator=attr.validators.optional(attr.validators.instance_of((float, int))),
         default=None,
     )
     style: typing.Optional[Style] = attr.ib(
@@ -46,7 +47,6 @@ class FontProperties:
     #     pass
     # def to_string(self):
     #     pass
-
 
 
 @attr.s(frozen=True)
@@ -99,6 +99,7 @@ class RegisterFont(object):
             super().__setattr__("family", family)
         else:
             super().__setattr__("family", None)
+
     def unregister(self):
         if self.use_fontconfig:
             fc_unregister_font(str(self.font_file))

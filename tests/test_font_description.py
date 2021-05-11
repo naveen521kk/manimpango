@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import copy 
-
 from manimpango import FontProperties
 
 
@@ -20,4 +18,3 @@ def test_size_property():
     assert desc.size == None
     desc.size = 20
     assert desc.size == 20
-

@@ -12,4 +12,3 @@ cdef extern from "glib.h":
         gint code
         gchar *message
     void g_error_free (GError *error)
-

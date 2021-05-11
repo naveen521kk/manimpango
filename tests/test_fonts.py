@@ -6,7 +6,11 @@ from shutil import copyfile
 import pytest
 
 import manimpango
-from manimpango.font_manager._register_font import register_font, unregister_font, fc_register_font, fc_unregister_font
+from manimpango.font_manager._register_font import (fc_register_font,
+                                                    fc_unregister_font,
+                                                    register_font,
+                                                    unregister_font)
+
 from . import FONT_DIR
 
 font_lists = {
@@ -67,9 +71,7 @@ def test_register_and_unregister_font(font_name):
 @pytest.mark.parametrize("font_name", font_lists)
 @pytest.mark.skipif(sys.platform.startswith("darwin"), reason="always returns true")
 def test_fail_just_unregister(font_name):
-    assert not unregister_font(
-        str(font_name)
-    ), "Failed to unregister the font"
+    assert not unregister_font(str(font_name)), "Failed to unregister the font"
 
 
 @pytest.mark.skipif(

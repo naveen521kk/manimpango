@@ -1,9 +1,14 @@
-from manimpango import FontProperties, Style, Variant, Weight, RegisterFont, list_fonts
-import pytest
+# -*- coding: utf-8 -*-
 import sys
-from .test_fonts import font_lists
-from attr.exceptions import FrozenInstanceError
 from pathlib import Path
+
+import pytest
+from attr.exceptions import FrozenInstanceError
+
+from manimpango import (FontProperties, RegisterFont, Style, Variant, Weight,
+                        list_fonts)
+
+from .test_fonts import font_lists
 
 
 def test_invalid_size():
@@ -76,8 +81,9 @@ def test_Register_Font_invalid_font_raise(tmpdir, fontconfig):
     with pytest.raises(RuntimeError):
         RegisterFont(tmpfile, use_fontconfig=fontconfig)
 
+
 def test_Register_Font_file_not_found(tmpdir):
     with pytest.raises(FileNotFoundError):
-        RegisterFont(Path(tmpdir)/'test')
+        RegisterFont(Path(tmpdir) / "test")
     with pytest.raises(FileNotFoundError):
         RegisterFont(Path(tmpdir))

@@ -9,5 +9,3 @@ Manimpango Reference
    manimpango.layout.utils.validate_markup
    manimpango.Layout
    manimpango.utils.Color
-
-

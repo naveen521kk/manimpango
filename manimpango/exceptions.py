@@ -2,5 +2,6 @@
 class CairoException(Exception):
     pass
 
+
 class MarkupParseError(Exception):
     pass

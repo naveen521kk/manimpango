@@ -306,7 +306,5 @@ setup(
     package_data={
         "manimpango": ["*.pxd", "*.pyx"],
     },
-    install_requires = [
-        'attrs>=20.0'
-    ]
+    install_requires=["attrs>=20.0"],
 )

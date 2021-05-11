@@ -7,6 +7,7 @@ import manimpango
 
 # from ._manim import MarkupText
 from . import CASES_DIR
+
 # from .svg_tester import SVGStyleTester
 
 # ipsum_text = (
@@ -25,16 +26,20 @@ from . import CASES_DIR
 @pytest.mark.parametrize("text", ["foo", "<b>bar</b>", "வணக்கம்"])
 def test_good_markup(text):
 
-    assert manimpango.layout.utils.validate_markup(
-        text,
-    ) == '', f"{text} should not fail validation"
+    assert (
+        manimpango.layout.utils.validate_markup(
+            text,
+        )
+        == ""
+    ), f"{text} should not fail validation"
 
 
 @pytest.mark.parametrize("text", ["<b>foo", "<xyz>foo</xyz>"])
 def test_bad_markup(text):
-    assert manimpango.layout.utils.validate_markup(
-        text
-    ) != "", f"{text} should fail validation (unbalanced tags)"
+    assert (
+        manimpango.layout.utils.validate_markup(text) != ""
+    ), f"{text} should fail validation (unbalanced tags)"
+
 
 # def test_markup_text(tmpdir):
 #     loc = Path(tmpdir, "test.svg")
