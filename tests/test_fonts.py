@@ -6,10 +6,12 @@ from shutil import copyfile
 import pytest
 
 import manimpango
-from manimpango.font_manager._register_font import (fc_register_font,
-                                                    fc_unregister_font,
-                                                    register_font,
-                                                    unregister_font)
+from manimpango.font_manager._register_font import (
+    fc_register_font,
+    fc_unregister_font,
+    register_font,
+    unregister_font,
+)
 
 from . import FONT_DIR
 

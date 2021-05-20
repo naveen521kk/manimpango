@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-from pathlib import Path
+
 
 import pytest
 
 import manimpango
-
-# from ._manim import MarkupText
-from . import CASES_DIR
 
 # from .svg_tester import SVGStyleTester
 

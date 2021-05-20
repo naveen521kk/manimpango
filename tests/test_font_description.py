@@ -15,6 +15,6 @@ def test_family_property():
 
 def test_size_property():
     desc = FontProperties()
-    assert desc.size == None
+    assert desc.size is None
     desc.size = 20
     assert desc.size == 20

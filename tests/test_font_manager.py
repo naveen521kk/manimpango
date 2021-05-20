@@ -5,8 +5,7 @@ from pathlib import Path
 import pytest
 from attr.exceptions import FrozenInstanceError
 
-from manimpango import (FontProperties, RegisterFont, Style, Variant, Weight,
-                        list_fonts)
+from manimpango import FontProperties, RegisterFont, Style, Variant, Weight, list_fonts
 
 from .test_fonts import font_lists
 
