@@ -1,11 +1,39 @@
 Manimpango Reference
 ====================
 
+.. currentmodule:: manimpango
+
+************
+Font Manager
+************
+
 .. autosummary::
    :toctree: reference
 
-   manimpango.FontProperties
-   manimpango.RegisterFont
-   manimpango.layout.utils.validate_markup
-   manimpango.Layout
-   manimpango.utils.Color
+   ~FontProperties
+   ~RegisterFont
+
+*****
+Enums
+*****
+
+.. autosummary::
+   :toctree: reference
+
+   ~Style
+   ~Weight
+   ~Variant
+   ~Alignment
+
+*****
+Utils
+*****
+
+.. autosummary::
+   :toctree: reference
+
+   ~Color
+   ~pango_version
+   ~cairo_version
+   ~list_fonts
+   
