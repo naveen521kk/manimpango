@@ -1,5 +1,38 @@
 [build-system]
-requires = ["setuptools", "wheel", "Cython>=0.27"]
+requires = ["mesonpep517", "Cython>=0.27"]
+build-backend = "mesonpep517.buildapi"
+
+[tool.mesonpep517.metadata]
+author = "Naveen M K"
+author-email = "naveen@syrusdark.website"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Cython",
+]
+summary = "Bindings for Pango for using with Manim."
+description-file = "README.md"
+home-page = "https://manimpango.manim.community/"
+license = "GPL-3.0-or-later"
+maintainer = "The Manim Community Developers"
+module = "manimpango"
+platforms = ["Linux", "macOS", "Windows"]
+project-urls = [
+    "Documentation, https://manimpango.manim.community/",
+    "Source, https://github.com/ManimCommunity/manimpango",
+    "Release notes, https://github.com/ManimCommunity/ManimPango/releases/"
+]
+requires = ["attrs>=20.0"]
+requires-python = ">=3.6"
+
+
 
 [tool.isort]
 # from https://black.readthedocs.io/en/stable/compatible_configs.html

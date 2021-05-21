@@ -1,0 +1,11 @@
+option(
+    'python',
+    type : 'string',
+    value : 'python'
+)
+option(
+    'coverage',
+    type : 'boolean',
+    value : false,
+    description : 'build with coverage enabled.'
+)
