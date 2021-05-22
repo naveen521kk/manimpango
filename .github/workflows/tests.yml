@@ -37,11 +37,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/pangoprefix
-          key: ${{ hashFiles('packing/build_pango_tests.sh') }}-${{ runner.os }}
+          key: ${{ hashFiles('scripts/build_pango_tests.sh') }}-${{ runner.os }}
       - name: Install System Dependency
         if: steps.cache-pango.outputs.cache-hit != 'true'
         run: |
-          source packing/build_pango_tests.sh
+          source scripts/build_pango_tests.sh
 
       - name: Install python dependencies
         run: |
@@ -138,10 +138,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: C:\cibw\pkg-config
-          key: ${{ hashFiles('packing/download_dlls.py') }}-${{ hashFiles('packing/build_pkgconfig.ps1') }}-1
+          key: ${{ hashFiles('scripts/download_dlls.py') }}-${{ hashFiles('scripts/build_pkgconfig.ps1') }}-1
       - name: Download Binary
         run: |
-          python packing/download_dlls.py
+          python scripts/download_dlls.py
       - name: Set Path
         run: |
           $env:Path = "C:\cibw\pkg-config\bin;C:\cibw\vendor\bin;$($env:PATH)"
@@ -165,7 +165,7 @@ jobs:
           architecture: "x86"
       - name: Download Binary
         run: |
-          python packing/download_dlls.py
+          python scripts/download_dlls.py
       - name: Build x86 Build
         run: |
           $env:PATH="$env:PATH;C:\cibw\vendor\pkg-config\bin;C:\cibw\vendor\bin"
