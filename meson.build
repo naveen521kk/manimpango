@@ -1,7 +1,7 @@
 project(
   'manimpango', 'c',
   version: '1.0.0a0',
-  meson_version: '>= 0.49.0',
+  meson_version: '>= 0.53.0',
   default_options: [
     'warning_level=1',
     'buildtype=release',

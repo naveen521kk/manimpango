@@ -1,0 +1,7 @@
+[wrap-file]
+directory = pango-1.48.5
+
+source_url = https://download.gnome.org/sources/pango/1.48/pango-1.48.5.tar.xz
+source_fallback_url = https://gitlab.gnome.org/GNOME/pango/-/archive/1.48.5/pango-1.48.5.tar.xz
+source_filename = pango-1.48.5.tar.xz
+source_hash = 501e74496173c02dcd024ded7fbb3f09efd37e2a488e248aa40799424dbb3b2a
