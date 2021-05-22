@@ -4,6 +4,7 @@ python_sources = [
   '__init__.py',
   '_version.py',
   '_distributor_init.py',
+  'exceptions.py',
   'py.typed'
 ]
 foreach python_source : python_sources
