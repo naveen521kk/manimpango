@@ -5,6 +5,7 @@ build-backend = "mesonpep517.buildapi"
 [tool.mesonpep517.metadata]
 author = "Naveen M K"
 author-email = "naveen@syrusdark.website"
+meson-python-option-name = "python"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
@@ -23,7 +24,7 @@ home-page = "https://manimpango.manim.community/"
 license = "GPL-3.0-or-later"
 maintainer = "The Manim Community Developers"
 module = "manimpango"
-platforms = ["Linux", "macOS", "Windows"]
+#platforms = "py3"
 project-urls = [
     "Documentation, https://manimpango.manim.community/",
     "Source, https://github.com/ManimCommunity/manimpango",
