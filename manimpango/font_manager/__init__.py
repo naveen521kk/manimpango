@@ -54,6 +54,7 @@ class FontProperties:
     ValueError
         When the :attr:`size` is set as zero.
     """
+
     family: typing.Optional[str] = attr.ib(
         validator=attr.validators.optional(attr.validators.instance_of(str)),
         default=None,
@@ -77,10 +78,10 @@ class FontProperties:
     # stretch
     # gravity
     # variations
+
     @size.validator
     def check_size(self, attribute, value):
-        """Check whether the :attr:`size` isn't zero.
-        """
+        """Check whether the :attr:`size` isn't zero."""
         if value == 0:
             raise ValueError("Size shouldn't be Zero.")
 
@@ -118,11 +119,11 @@ class RegisterFont(object):
     Windows you can set::
 
         PANGOCAIRO_BACKEND=fc
-    
+
     and after that fontconfig backend is used. After that you can set
     :attr:`use_fontconfig` to ``True`` which will add to fontconfig search
     path.
-    
+
     .. warning::
 
         1. Linux has only fontconfig backend and changing to anything
@@ -166,6 +167,7 @@ class RegisterFont(object):
     RuntimeError
         This is raised when unable to register the font.
     """
+
     font_file: typing.Union[str, Path] = attr.ib(
         validator=[attr.validators.instance_of((str, Path))],
     )

@@ -2,7 +2,7 @@ subdir_val = 'manimpango/utils'
 
 python_sources = [
     '__init__.py',
-    '_list_fonts.pyi',    
+    '_list_fonts.pyi',
     'utils.py',
     'colours.pyi',
     'colours.pyx',

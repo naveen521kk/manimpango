@@ -198,4 +198,4 @@ cdef class SVGRenderer(CairoRenderer):
         raise NotImplementedError
 
     def __deepcopy__(self):
-        raise NotImplementedError    
+        raise NotImplementedError

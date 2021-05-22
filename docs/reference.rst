@@ -36,4 +36,3 @@ Utils
    ~pango_version
    ~cairo_version
    ~list_fonts
-   

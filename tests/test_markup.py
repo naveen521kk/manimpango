@@ -84,7 +84,8 @@ def test_bad_markup(text):
 # def test_markup_style(tmpdir):
 #     test_case = CASES_DIR / "hello_blue_world_green.svg"
 #     expected = tmpdir / "expected.svg"
-#     text = "<span foreground='BLUE'>Hello</span>\n<span foreground='GREEN'>World</span>"
+#     text = "<span foreground='BLUE'>Hello"
+# "</span>\n<span foreground='GREEN'>World</span>"
 #     MarkupText(
 #         text,
 #         filename=str(expected),

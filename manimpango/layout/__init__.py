@@ -4,9 +4,9 @@ import typing
 import attr
 
 from ..exceptions import MarkupParseError
+from ..font_manager import FontProperties
 from ..utils import Alignment
 from .utils import validate_markup
-from ..font_manager import FontProperties
 
 __all__ = ["Layout", "validate_markup"]
 
@@ -58,7 +58,7 @@ class Layout:
     line_spacing: float = attr.ib(
         default=0,
         validator=attr.validators.optional(
-            attr.validators.instance_of((float,int)),
+            attr.validators.instance_of((float, int)),
         ),
     )
     justify: bool = attr.ib(

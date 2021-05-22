@@ -44,7 +44,8 @@ def test_register_font(font_name):
 #     print(font_name)
 #     manim.Text("Testing", font=font_name)
 #     captured = capfd.readouterr()
-#     assert "Pango-WARNING **" not in captured.err, "Looks like pango raised a warning?"
+#     assert "Pango-WARNING **" not in captured.err,
+#    "Looks like pango raised a warning?"
 
 
 @pytest.mark.skipif(
