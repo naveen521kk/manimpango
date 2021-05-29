@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "https://gitlab.com/thiblahute/mesonpep517/-/archive/b71281f0b0a9831293a17034ef575d78decb4294/mesonpep517-b71281f0b0a9831293a17034ef575d78decb4294.tar.gz",
+    "mesonpep517 @ https://gitlab.com/thiblahute/mesonpep517/-/archive/b71281f0b0a9831293a17034ef575d78decb4294/mesonpep517-b71281f0b0a9831293a17034ef575d78decb4294.tar.gz",
     "Cython>=0.27",
     "ninja>=1.8.2",
     "meson>=0.53.0"
